@@ -18,3 +18,15 @@ with open('calls.csv', 'r') as f:
 输出信息：
 "There are <count> different telephone numbers in the records."
 """
+
+phone = []
+for i in texts:
+    phone.append(i[0])
+    phone.append(i[1])
+
+for i in calls:
+    phone.append(i[0])
+    phone.append(i[1])
+
+count = len(set(phone))
+print("There are {} different telephone numbers in the records.".format(count))

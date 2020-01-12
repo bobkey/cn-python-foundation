@@ -12,6 +12,24 @@ with open('calls.csv', 'r') as f:
     reader = csv.reader(f)
     calls = list(reader)
 
+text_senders, text_receivers, text_times = zip(*texts)
+text_senders = list(text_senders)
+text_receivers = list(text_receivers)
+
+call_makers, call_receivers, call_times, call_durations = zip(*calls)
+call_makers = list(call_makers)
+call_receivers = list(call_receivers)
+
+telemarketers = set()
+for call_maker in call_makers:
+    if call_maker not in text_senders and call_maker not in text_receivers and call_maker not in call_receivers:
+        telemarketers.add(call_maker)
+
+telemarketers = sorted(telemarketers)
+print("These numbers could be telemarketers: ")
+for telemarketer in telemarketers:
+    print(telemarketer)
+
 """
 任务4:
 电话公司希望辨认出可能正在用于进行电话推销的电话号码。

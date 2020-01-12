@@ -12,6 +12,32 @@ with open('calls.csv', 'r') as f:
     reader = csv.reader(f)
     calls = list(reader)
 
+codes = set()
+count_call_from_bangalore = 0
+for call in calls:
+    if call[0].find("(080)") == 0:
+        count_call_from_bangalore += 1
+        if call[1].find(")") != -1:
+            code = call[1][1: call[1].find(")")]
+            codes.add(code)
+        elif call[1].find(" ") != -1:
+            code = call[1][: 4]
+            codes.add(code)
+
+sorted_codes = sorted(codes)
+
+print("The numbers called by people in Bangalore have codes:")
+for code in sorted_codes:
+    print(code)
+
+# Second Part
+count_call_to_bangalore = 0
+for call in calls:
+    if call[0].find("(080)") == 0 and call[1].find("(080)") == 0:
+        count_call_to_bangalore += 1
+
+percentage = float(count_call_to_bangalore) / float(count_call_from_bangalore)
+print("{}% percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore.".format(float('%.2f' % (percentage * 100))))
 """
 任务3:
 (080)是班加罗尔的固定电话区号。
