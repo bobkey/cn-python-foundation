@@ -11,7 +11,7 @@ with open('texts.csv', 'r') as f:
 with open('calls.csv', 'r') as f:
     reader = csv.reader(f)
     calls = list(reader)
-    
+
 # 参考了他人对于 zip 的实现方式，不用这个 zip 也是可以的，但代码没这么简洁易懂
 senders, receivers, times = zip(*texts)
 senders = list(senders)
@@ -22,9 +22,11 @@ callers = list(callers)
 becallers = list(becallers)
 
 telemarketers = set()
-for i in call_makers:
-    if i not in senders and i not in receivers and i not in callers:
+for i in callers:
+    # 把 callers 改成了 becallers 即可
+    if i not in senders and i not in receivers and i not in becallers:
         telemarketers.add(i)
+
 
 telemarketers = sorted(telemarketers)
 print("These numbers could be telemarketers: ")

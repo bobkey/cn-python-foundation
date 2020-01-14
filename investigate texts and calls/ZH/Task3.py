@@ -11,12 +11,19 @@ with open('texts.csv', 'r') as f:
 with open('calls.csv', 'r') as f:
     reader = csv.reader(f)
     calls = list(reader)
-
+# 修改部分 1：增加了一个被 080 call 的变量
+called080 = 0
 BangaloreCalls = []
 for i in calls:
 
     if i[0].find("(080)") == 0:
         BangaloreCalls.append(i[1])
+        #修改部分 2：增加了被 call 080 地区的电话次数统计
+        if i[1].find("(080)") == 0:
+            called080 +=1
+
+
+
 
 
 codes = []
@@ -34,9 +41,9 @@ Bangalorecodes = sorted(set(codes))
 print("The numbers called by people in Bangalore have codes:")
 for i in Bangalorecodes:
     print(i)
-# percentage
+# 修改部分 3：修改了分子和分母
 print("{:.2%} percent of calls from fixed lines in Bangalore are calls\
-to other fixed lines in Bangalore.".format(len(BangaloreCalls) / len(calls)))
+to other fixed lines in Bangalore.".format(called080 / len(BangaloreCalls)))
 
 """
 任务3:
