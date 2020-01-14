@@ -11,7 +11,8 @@ with open('texts.csv', 'r') as f:
 with open('calls.csv', 'r') as f:
     reader = csv.reader(f)
     calls = list(reader)
-
+    
+# 参考了他人对于 zip 的实现方式，不用这个 zip 也是可以的，但代码没这么简洁易懂
 senders, receivers, times = zip(*texts)
 senders = list(senders)
 receivers = list(receivers)
