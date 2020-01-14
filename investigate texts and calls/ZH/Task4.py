@@ -12,18 +12,18 @@ with open('calls.csv', 'r') as f:
     reader = csv.reader(f)
     calls = list(reader)
 
-text_senders, text_receivers, text_times = zip(*texts)
-text_senders = list(text_senders)
-text_receivers = list(text_receivers)
+senders, receivers, times = zip(*texts)
+senders = list(senders)
+receivers = list(receivers)
 
-call_makers, call_receivers, call_times, call_durations = zip(*calls)
-call_makers = list(call_makers)
-call_receivers = list(call_receivers)
+callers, becallers, call_dates, call_times = zip(*calls)
+callers = list(callers)
+becallers = list(becallers)
 
 telemarketers = set()
-for call_maker in call_makers:
-    if call_maker not in text_senders and call_maker not in text_receivers and call_maker not in call_receivers:
-        telemarketers.add(call_maker)
+for i in call_makers:
+    if i not in senders and i not in receivers and i not in callers:
+        telemarketers.add(i)
 
 telemarketers = sorted(telemarketers)
 print("These numbers could be telemarketers: ")
